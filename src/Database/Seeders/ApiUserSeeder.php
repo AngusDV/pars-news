@@ -13,6 +13,11 @@ class ApiUserSeeder extends Seeder
      */
     public function run(): void
     {
+        ApiUserFactory::new()->count(1)->create()->each(function ($apiUser){
+            $apiUser->email="superadmin@test.com";
+            $apiUser->type="api";
+            $apiUser->save();
+        });
         ApiUserFactory::new()->count(10)->create();
     }
 }

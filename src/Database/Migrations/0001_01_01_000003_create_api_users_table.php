@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('api_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('type',['normal','api'])->default('normal');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

@@ -5,15 +5,19 @@
 ```
 composer require angus-dv/pars-news
 ```
-2. Docker compose up:
+2. Docker file add to root:
+```angular2html
+php artisan pars-news:install-docker
+```
+3. Docker compose up:
 ```angular2html
 docker compose up -d
 ```
-3. Publish vendor : 
+4. Publish vendor : 
 ```
 docker exec -it pars_php  php artisan vendor:publish
 ```
-4.run migrations and seeders and sanctum install
+5.run migrations and seeders and sanctum install
 ```angular2html
 docker exec -it pars_php  php robot:install
 ```

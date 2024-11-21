@@ -4,13 +4,14 @@ namespace AngusDV\ParsNews\Database\Seeders;
 
 use AngusDV\ParsNews\Database\Factories\ApiUserFactory;
 use AngusDV\ParsNews\Database\Factories\ArticleFactory;
+use AngusDV\ParsNews\Database\Factories\CommentFactory;
 use AngusDV\ParsNews\Entity\ApiUser;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Http\UploadedFile;
 
 
-class ArticleSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
 
     /**
@@ -18,9 +19,6 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        ArticleFactory::new()->count(10)->create()->each(function ($article) {
-            // Set the file in the media library
-            $article->setFile(UploadedFile::fake()->create('test5.png', 50), 'articles');
-        });
+        CommentFactory::new()->count(10)->create();
     }
 }
