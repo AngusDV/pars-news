@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('creator_id'); // Assuming you have a users table
+            $table->unsignedBigInteger('user_id'); // Assuming you have a users table
+            $table->unsignedBigInteger('article_id'); // Assuming you have an articles table
             $table->text('comment');
             $table->timestamps();
+            $table->softDeletes();
+            // Foreign keys
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
 
     }
@@ -25,6 +31,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['article_id']);
+        });
+
         Schema::dropIfExists('comments');
     }
 };

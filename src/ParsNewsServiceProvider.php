@@ -43,7 +43,8 @@ class ParsNewsServiceProvider extends ServiceProvider
 
     protected function loadSeeders(){
         $this->callAfterResolving(DatabaseSeeder::class, function ($seeder)  {
-           $seeder->call(\AngusDV\ParsNews\Database\Seeders\ApiUser::class);
+           $seeder->call(\AngusDV\ParsNews\Database\Seeders\ApiUserSeeder::class);
+           $seeder->call(\AngusDV\ParsNews\Database\Seeders\ArticleSeeder::class);
         });
     }
     protected function copyFilesIfNotExists()
