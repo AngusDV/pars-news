@@ -1,0 +1,29 @@
+{
+    "name": "angus-dv/pars-news",
+    "description": "This project provides a restful API for managing articles on a news site. It allows users to create, read, update, and delete articles efficiently.",
+    "type": "library",
+    "require": {
+        "spatie/laravel-permission": "^6.10",
+        "spatie/laravel-medialibrary": "^11.10"
+    },
+    "license": "MIT",
+    "version": "1.1.1",
+    "autoload": {
+        "psr-4": {
+            "AngusDV\\ParsNews\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hassan mousavi",
+            "email": "hsmsender1370@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AngusDV\\ParsNews\\ParsNewsServiceProvider"
+            ]
+        }
+    }
+}
