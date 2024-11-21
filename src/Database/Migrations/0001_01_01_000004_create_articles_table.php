@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,12 +12,13 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('creator_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('creator_id');
             $table->string('title');
             $table->text("description");
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('creator_id')->references('id')->on('api_users')->onDelete('cascade');
         });
 
     }
@@ -28,6 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropForeign(['creator_id']);
+        });
         Schema::dropIfExists('api_users');
     }
 };

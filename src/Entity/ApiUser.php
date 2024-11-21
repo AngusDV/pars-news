@@ -22,6 +22,25 @@ class ApiUser extends Model
         'email',
         'password',
     ];
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+
+    protected $hidden = [
+        'password'
+    ];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
@@ -34,6 +53,11 @@ class ApiUser extends Model
 
     public function likes(): HasMany
     {
-        return $this->hasMany(ArticleLike::class);
+        return $this->hasMany(CommentLike::class);
+    }
+
+    public function isApi()
+    {
+        return $this->type=="api";
     }
 }

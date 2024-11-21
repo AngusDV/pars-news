@@ -16,6 +16,7 @@ class ApiUserSeeder extends Seeder
         ApiUserFactory::new()->count(1)->create()->each(function ($apiUser){
             $apiUser->email="superadmin@test.com";
             $apiUser->type="api";
+            $apiUser->password=bcrypt("123");
             $apiUser->save();
         });
         ApiUserFactory::new()->count(10)->create();

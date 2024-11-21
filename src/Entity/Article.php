@@ -15,11 +15,6 @@ class Article extends Model implements HasMedia
     {
         return $this->hasMany(Comment::class);
     }
-
-    public function likes(): HasMany
-    {
-        return $this->hasMany(ArticleLike::class);
-    }
     public function setFile($file, $collection_name)
     {
         !$this?->getFile($collection_name) ?: $this?->getFile($collection_name)?->delete();

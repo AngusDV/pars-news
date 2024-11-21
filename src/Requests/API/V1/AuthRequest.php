@@ -9,7 +9,8 @@ class AuthRequest extends BaseRequest
     public function rules()
     {
         return [
-
+            'email'=>"required|string|email|exists:api_users,email",
+            'password'=>"required|string"
         ];
     }
 }

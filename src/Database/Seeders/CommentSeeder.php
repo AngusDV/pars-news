@@ -2,13 +2,8 @@
 
 namespace AngusDV\ParsNews\Database\Seeders;
 
-use AngusDV\ParsNews\Database\Factories\ApiUserFactory;
-use AngusDV\ParsNews\Database\Factories\ArticleFactory;
 use AngusDV\ParsNews\Database\Factories\CommentFactory;
-use AngusDV\ParsNews\Entity\ApiUser;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
-use Illuminate\Http\UploadedFile;
 
 
 class CommentSeeder extends Seeder
