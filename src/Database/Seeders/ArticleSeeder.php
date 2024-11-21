@@ -6,6 +6,9 @@ use AngusDV\ParsNews\Database\Factories\ApiUserFactory;
 use AngusDV\ParsNews\Database\Factories\ArticleFactory;
 use AngusDV\ParsNews\Entity\ApiUser;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
+use Illuminate\Http\UploadedFile;
+
 
 class ArticleSeeder extends Seeder
 {
@@ -15,13 +18,13 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (ApiUser::get() as $user) {
-            ArticleFactory::new()->count(10)->create()->each(function($article)use($user){
-                    $article->creator_id=$user->id;
-                    $article->user_id=$user->id;
-                    $article->save();
+        $faker = app(Faker::class);
+
+            ArticleFactory::new()->count(10)->create()->each(function ($article) use ($faker) {
+                // Set the file in the media library
+                $article->setFile(UploadedFile::fake()->create('test5.png', 50), 'articles');
             });
-        }
+
 
     }
 }
