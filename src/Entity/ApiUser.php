@@ -12,7 +12,6 @@ use Laravel\Sanctum\HasApiTokens;
 class ApiUser extends Model
 {
     use HasFactory, Notifiable,HasApiTokens,SoftDeletes;
-
     /**
      * The attributes that are mass assignable.
      *
