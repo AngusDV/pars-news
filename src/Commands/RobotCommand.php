@@ -38,19 +38,20 @@ class RobotCommand extends Command
     public function handle()
     {
         $this->call('cache:clear');
+
+        // Run the installation:api command
+        $this->info('Installing API...');
+        if ($this->call('install:api') !== 0) {
+            $this->error('API installation failed.');
+            return 1;
+        }
+
         // Run the migrate command
         $this->info('Running migrations...');
         if ($this->call('migrate',[
                 '--force' => 'force',
             ]) !== 0) {
             $this->error('Migration failed.');
-            return 1;
-        }
-
-        // Run the install:api command
-        $this->info('Installing API...');
-        if ($this->call('install:api') !== 0) {
-            $this->error('API installation failed.');
             return 1;
         }
 
