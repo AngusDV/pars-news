@@ -20,7 +20,7 @@ class ArticleSeeder extends Seeder
     {
         ArticleFactory::new()->count(10)->create()->each(function ($article) {
             // Set the file in the media library
-            $article->setFile(UploadedFile::fake()->create('test5.png', 50), 'articles');
+            $article->setFile(UploadedFile::fake()->create('test5.png', 50), 'primary_image');
         });
     }
 }

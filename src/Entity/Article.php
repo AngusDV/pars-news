@@ -11,6 +11,10 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Article extends Model implements HasMedia
 {
     use InteractsWithMedia,SoftDeletes;
+    protected $fillable=[
+        "title",
+        "description",
+    ];
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);

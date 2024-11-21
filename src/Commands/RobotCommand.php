@@ -37,7 +37,7 @@ class RobotCommand extends Command
      */
     public function handle()
     {
-        $this->call('cache:clear');
+        $this->call('optimize:clear');
 
         // Run the installation:api command
         $this->info('Installing API...');
@@ -63,6 +63,16 @@ class RobotCommand extends Command
             $this->error('Database seeding failed.');
             return 1;
         }
+
+        // Run storage:link command
+        if ($this->call('storage:link') !== 0) {
+            $this->error('Failed to create storage link.');
+            return 1;
+        }
+
+        $this->info('Storage link created successfully.');
+
+
 
         $this->info('API installation completed successfully!');
         return 0;

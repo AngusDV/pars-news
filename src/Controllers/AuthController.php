@@ -23,7 +23,6 @@ class AuthController
             if(!password_verify($request->password,$user->password)){
                 return  BaseResource::falseResponse(__('ParsNews::parsnews.username_or_password_is_wrong'));
             }
-
             return new ApiUserResource($user, 'Bearer ' . $user->createToken("api",
                         [
                             "fcm" => "{$request->input("fcmToken")}",
