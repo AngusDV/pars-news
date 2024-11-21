@@ -1,0 +1,72 @@
+<?php
+
+namespace AngusDV\ParsNews\Commands;
+
+use Illuminate\Console\Command;
+
+class RobotCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'robot:install';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'This command runs all system and sub-system migrations';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $this->call('cache:clear');
+        // Run the migrate command
+        $this->info('Running migrations...');
+        if ($this->call('migrate',[
+                '--force' => 'force',
+            ]) !== 0) {
+            $this->error('Migration failed.');
+            return 1;
+        }
+
+        // Run the install:api command
+        $this->info('Installing API...');
+        if ($this->call('install:api') !== 0) {
+            $this->error('API installation failed.');
+            return 1;
+        }
+
+        // Run the db:seed command
+        $this->info('Seeding the database...');
+        if ($this->call('db:seed',[
+                '--force' => 'force',
+            ]) !== 0) {
+            $this->error('Database seeding failed.');
+            return 1;
+        }
+
+        $this->info('API installation completed successfully!');
+        return 0;
+
+
+    }
+
+}

@@ -2,6 +2,7 @@
 
 namespace AngusDV\ParsNews;
 
+use AngusDV\ParsNews\Commands\RobotCommand;
 use AngusDV\ParsNews\Entity\ApiUser;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\ServiceProvider;
@@ -11,6 +12,9 @@ class ParsNewsServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->commands([
+            RobotCommand::class
+        ]);
         $this->loadMigrationsFrom(__DIR__ . '/Database/Migrations');
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang/', 'ParsNews');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ParsNews');

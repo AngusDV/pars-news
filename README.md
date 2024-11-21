@@ -13,11 +13,8 @@ docker compose up -d
 ```
 docker exec -it pars_php  php artisan vendor:publish
 ```
-4.install sanctum 
+4.run migrations and seeders and sanctum install
 ```angular2html
-docker exec -it pars_php  php artisan install:api
+docker exec -it pars_php  php robot:install
 ```
-5. install sanctum
-```angular2html
-docker exec -it pars_php  php artisan install:api
-```
+
