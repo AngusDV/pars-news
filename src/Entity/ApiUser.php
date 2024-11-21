@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class ApiUser extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

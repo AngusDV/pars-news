@@ -3,7 +3,6 @@
     "description": "This project provides a restful API for managing articles on a news site. It allows users to create, read, update, and delete articles efficiently.",
     "type": "library",
     "require": {
-        "spatie/laravel-permission": "^6.10",
         "spatie/laravel-medialibrary": "^11.10"
     },
     "license": "MIT",
