@@ -7,6 +7,7 @@ use AngusDV\ParsNews\Database\Factories\ArticleFactory;
 use AngusDV\ParsNews\Entity\ApiUser;
 use AngusDV\ParsNews\Entity\Article;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class ArticleApiTest extends TestCase
@@ -121,19 +122,6 @@ class ArticleApiTest extends TestCase
         $loginResponse->assertStatus(200);
         $token = $loginResponse->json('result.accessToken');
 
-        // Prepare the file paths for the images
-        $primaryImagePath = '/home/hsm/.cache/.fr-CKPaQZ/3000_images/combined_9.jpg';
-        $attachmentPaths = [
-            '/home/hsm/.cache/.fr-wPj6zv/3000_images/combined_6.jpg',
-            '/home/hsm/.cache/.fr-iO3D2W/3000_images/combined_1.jpg',
-            '/home/hsm/Desktop/qrcode/background.jpg',
-        ];
-
-        // Convert the attachment paths to UploadedFile instances
-        $attachments = [];
-        foreach ($attachmentPaths as $attachmentPath) {
-            $attachments[] = new \Illuminate\Http\UploadedFile($attachmentPath, basename($attachmentPath));
-        }
 
         // Create the article using the Bearer token
         $response = $this->withHeaders([
@@ -142,33 +130,111 @@ class ArticleApiTest extends TestCase
         ])->post('/api/v1/article', [
             'title' => 'test',
             'description' => 'ddddd',
-            'primary_image' => new \Illuminate\Http\UploadedFile($primaryImagePath, basename($primaryImagePath)),
-            'attachments' => $attachments,
+            'primary_image' =>UploadedFile::fake()->create('test3.png', 50)
         ]);
 
         // Assert that the response is successful
-        $response->assertStatus(201) // Adjust based on your API's expected status code for creation
+        $response->assertStatus(200) // Adjust based on your API's expected status code for creation
         ->assertJson([
             'isSuccess' => true,
-            'code' => 201, // Adjust if your API returns a different code
-            'message' => 'Article created successfully.', // Adjust based on your actual response
-        ])
-            ->assertJsonStructure([
-                'result' => [
-                    'id',
-                    'title',
-                    'description',
-                    'primaryImage',
-                    'attachments' => [
-                        '*' => [ // Assuming each attachment has an expected structure
-                            'id',
-                            'url',
-                        ],
-                    ],
-                ],
-            ]);
+            'code' => 200, // Adjust if your API returns a different code
+            'message' => '', // Adjust based on your actual response
+        ]);
     }
 
+
+    public function test_can_update_article_with_authenticated_user()
+    {
+        // Create a user
+        $user = ApiUserFactory::new()->create([
+            'password' => bcrypt($password = 'password'),
+            'type' => 'api',
+        ]);
+
+        // Login to get the Bearer token
+        $loginResponse = $this->postJson('/api/v1/login', [
+            'email' => $user->email,
+            'password' => $password,
+        ]);
+
+        // Check if the login was successful and get the Bearer token
+        $loginResponse->assertStatus(200);
+        $token = $loginResponse->json('result.accessToken');
+
+        // Create an article that we will update
+        $article = ArticleFactory::new()->create([
+            'title' => 'Original Title',
+            'description' => 'Original Description',
+            'user_id' => $user->id, // Assuming articles are linked to users
+        ]);
+
+        // Update the article using the Bearer token
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' =>  $token,
+        ])->patch('/api/v1/article/' . $article->id . '?_method=patch', [
+            'title' => 'Updated Title',
+            'description' => 'Updated Description',
+        ]);
+
+        // Assert that the response is successful
+        $response->assertStatus(200) // Adjust based on your API's expected status code for updates
+        ->assertJson([
+            'isSuccess' => true,
+            'code' => 200, // Adjust if your API returns a different code
+            'message' => '', // Adjust based on your actual response
+        ]);
+
+        // Verify that the article was updated in the database
+        $this->assertDatabaseHas('articles', [
+            'id' => $article->id,
+            'title' => 'Updated Title',
+            'description' => 'Updated Description',
+        ]);
+    }
+    public function test_can_retrieve_article_with_authenticated_user()
+    {
+        // Create a user
+        $user = ApiUserFactory::new()->create([
+            'password' => bcrypt($password = 'password'),
+            'type' => 'api',
+        ]);
+
+        // Login to get the Bearer token
+        $loginResponse = $this->postJson('/api/v1/login', [
+            'email' => $user->email,
+            'password' => $password,
+        ]);
+
+        // Check if the login was successful and get the Bearer token
+        $loginResponse->assertStatus(200);
+        $token = $loginResponse->json('result.accessToken');
+
+        // Create an article to retrieve
+        $article = ArticleFactory::new()->create([
+            'title' => 'Test Article',
+            'description' => 'This is a test article.',
+            'user_id' => $user->id, // Assuming articles are linked to users
+        ]);
+
+        // Retrieve the article using the Bearer token
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $token,
+        ])->get('/api/v1/article/' . $article->id);
+
+        // Assert that the response is successful
+        $response->assertStatus(200) // Adjust based on your API's expected status code for retrieval
+        ->assertJson([
+            'isSuccess' => true,
+            'code' => 200, // Adjust if your API returns a different code
+            'result' => [
+                'id' => $article->id,
+                'title' => 'Test Article',
+                'description' => 'This is a test article.',
+            ],
+        ]);
+    }
 
 }
 

@@ -40,7 +40,7 @@ autostart=true
 autorestart=true
 stopasgroup=true
 killasgroup=true
-user=www-data
+user=root
 numprocs=4
 redirect_stderr=true
 stdout_logfile=/var/log/laravel-worker.log
@@ -48,8 +48,12 @@ stopwaitsecs=3600
 ```
 after that you must do : 
 ```
-sudo usermod -aG docker www-data
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start all
+```
+
+## TEST
+```angular2html
+sudo docker exec -it pars_php  php  artisan test /vendor/angus-dv/pars-news/Test/
 ```

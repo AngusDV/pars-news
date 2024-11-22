@@ -11,7 +11,7 @@ class ArticleStoreRequest extends BaseRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
-            'primary_image' => 'required|image|mimes:jpg,jpeg.png|min:10|max:2000',
+            'primary_image' => 'required|image|mimes:jpg,jpeg,png|min:10|max:2000',
             'attachments' => 'nullable|array',
             'attachments.*' => 'required|file|min:10|max:2000',
         ];
