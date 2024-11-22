@@ -42,10 +42,10 @@ class DockerInstallCommand extends Command
     protected function copyFilesIfNotExists()
     {
         $filesToCopy = [
-            __DIR__ . '/../resources/docker/Dockerfile' => base_path(),
-            __DIR__ . '/../resources/docker/nginx' => base_path('docker/nginx'),
-            __DIR__ . '/../resources/docker/php' => base_path('docker/php'),
-            __DIR__ . '/../resources/docker/entrypoint.sh' => base_path('docker/entrypoint.sh'),
+            __DIR__ . '/../../resources/docker/Dockerfile' => base_path(),
+            __DIR__ . '/../../resources/docker/nginx' => base_path('docker/nginx'),
+            __DIR__ . '/../../resources/docker/php' => base_path('docker/php'),
+            __DIR__ . '/../../resources/docker/entrypoint.sh' => base_path('docker/entrypoint.sh'),
         ];
 
         foreach ($filesToCopy as $source => $destination) {
