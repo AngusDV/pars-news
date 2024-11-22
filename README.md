@@ -23,7 +23,7 @@ docker exec -it pars_php  php artisan vendor:publish
 ## Migraion and seder
 run migrations and seeders and sanctum install
 ```angular2html
-docker exec -it pars_php  php robot:install
+docker exec -it pars_php  php artisan robot:install
 ```
 
 ## Queue

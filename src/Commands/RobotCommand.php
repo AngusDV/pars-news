@@ -37,6 +37,14 @@ class RobotCommand extends Command
      */
     public function handle()
     {
+        // Run the migrate command
+        $this->info('Running migrations...');
+        if ($this->call('migrate:fresh',[
+                '--force' => 'force',
+            ]) !== 0) {
+            $this->error('Migration failed.');
+            return 1;
+        }
         $this->call('optimize:clear');
 
         // Run the installation:api command
@@ -46,14 +54,7 @@ class RobotCommand extends Command
             return 1;
         }
 
-        // Run the migrate command
-        $this->info('Running migrations...');
-        if ($this->call('migrate',[
-                '--force' => 'force',
-            ]) !== 0) {
-            $this->error('Migration failed.');
-            return 1;
-        }
+
 
         // Run the db:seed command
         $this->info('Seeding the database...');
