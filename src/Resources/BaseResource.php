@@ -27,7 +27,7 @@ abstract class BaseResource extends JsonResource
             'isSuccess' => true,
             'code' => $code,
             'result' => $data,
-            'message' => $message,
+            'message' => $message??__('success'),
         ], $code);
     }
 

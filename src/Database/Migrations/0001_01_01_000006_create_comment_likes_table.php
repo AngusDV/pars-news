@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('article_likes', function (Blueprint $table) {
+        Schema::create('comment_likes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('comment_id');
-            $table->enum('like_dislike', ['like', 'dislike']); // 'like' or 'dislike'
+            $table->enum('type', ['like', 'dislike']); // 'like' or 'dislike'
             $table->timestamps();
             $table->softDeletes();
             // Foreign keys
@@ -30,11 +30,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('article_likes', function (Blueprint $table) {
+        Schema::table('comment_likes', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['article_id']);
+            $table->dropForeign(['comment_id']);
         });
 
-        Schema::dropIfExists('article_likes');
+        Schema::dropIfExists('comment_likes');
     }
 };

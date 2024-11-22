@@ -13,11 +13,7 @@ class Comment extends Model
     {
         return $this->belongsTo(ApiUser::class,'user_id');
     }
-    public function creator()
-    {
-        return $this->belongsTo(ApiUser::class,'creator_id');
-    }
-    public function likes(): HasMany
+    public function commentLikes(): HasMany
     {
         return $this->hasMany(CommentLike::class);
     }
@@ -26,4 +22,27 @@ class Comment extends Model
     {
         return $this->belongsTo(Article::class);
     }
+    public function scopeSearch($query,$search)
+    {
+        return $query->where(function($query)use($search){
+            $query->where('comment','like','%'.$search.'%');
+        });
+    }
+
+    // Scope for counting likes
+    public function scopeWithLikesCount($query)
+    {
+        return $query->withCount(['commentLikes as total_likes' => function ($query) {
+            $query->where('type', 'like');
+        }]);
+    }
+
+    // Scope for counting dislikes
+    public function scopeWithDislikesCount($query)
+    {
+        return $query->withCount(['commentLikes as total_dislikes' => function ($query) {
+            $query->where('type', 'dislike');
+        }]);
+    }
+
 }

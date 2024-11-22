@@ -26,7 +26,6 @@ class CommentFactory extends Factory
         return [
             "article_id"=>$articleId,
             "user_id"=>$userId,
-            "creator_id"=>$userId,
             "comment"=>$this->faker->text,
         ];
     }

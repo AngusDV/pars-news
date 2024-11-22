@@ -11,6 +11,7 @@ Route::as('api.v1.')
         Route::middleware("auth:sanctum")->group(function () {
             Route::apiResource('article', ArticleController::class);
             Route::apiResource('comment', CommentController::class);
+            Route::post('comment/{comment}/like/or/dislike', [CommentController::class,'likeOrDislike']);
         });
-        Route::get('login', [AuthController::class, 'login'])->name('login');
+        Route::post('login', [AuthController::class, 'login'])->name('login');
     });

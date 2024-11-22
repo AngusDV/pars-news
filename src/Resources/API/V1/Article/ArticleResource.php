@@ -13,6 +13,7 @@ class ArticleResource extends BaseResource
             'title' => $this?->title??"",
             'description' => $this?->description??"",
             'primaryImage' => $this?->getFile("primary_image")?->getUrl()??'',
+            'attachments' => $this?->getAttachments(),
         ];
     }
 

@@ -29,6 +29,35 @@ class Article extends Model implements HasMedia
         return $this?->getFirstMedia($collection_name);
     }
 
+    public function scopeSearch($query,$search)
+    {
+        return $query->where(function($query)use($search){
+            $query->where('title','like','%'.$search.'%');
+            $query->orWhere('description','like','%'.$search.'%');
+        });
+    }
+
+    public function destroyAllAttachments()
+    {
+        foreach ( $this?->loadMedia('attachments')??[] as $media){
+            $media->delete();
+        }
+        return $this;
+    }
+    public function setAttachment($files)
+    {
+        foreach ($files ?? [] as $file) {
+            return $this->addMedia($file)->toMediaCollection('attachments');
+        }
+    }
+    public function getAttachments()
+    {
+        $attachments=[];
+        foreach ( $this?->loadMedia('attachments')??[] as $media){
+            $attachments[]=$media->getUrl();
+        }
+        return $attachments;
+    }
 
 
 }
