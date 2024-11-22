@@ -1,0 +1,1287 @@
+{
+	"info": {
+		"_postman_id": "1c5fc677-969a-4fee-b592-da16a6af6019",
+		"name": "parse-news",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "6264316"
+	},
+	"item": [
+		{
+			"name": "article",
+			"item": [
+				{
+					"name": "paginate and search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"search\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/article?page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"article"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "search",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"search\":\"cupiditate consequuntur\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/article"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 14:04:23 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": [\n        {\n            \"id\": 8,\n            \"title\": \"استاد\",\n            \"description\": \"Et corrupti quos aut ut ea quis. Debitis quia cupiditate consequuntur rerum animi.\",\n            \"primaryImage\": \"http://localhost:8004/storage/8/test5.png\"\n        }\n    ],\n    \"currentPage\": 1,\n    \"totalPage\": 1,\n    \"perPage\": 10,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/article/10"
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									}
+								],
+								"url": "{{url}}/article/10"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 14:37:49 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": null,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "ddddd",
+									"type": "text"
+								},
+								{
+									"key": "primary_image",
+									"type": "file",
+									"src": "/home/hsm/.cache/.fr-CKPaQZ/3000_images/combined_9.jpg"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": [
+										"/home/hsm/.cache/.fr-wPj6zv/3000_images/combined_6.jpg",
+										"/home/hsm/.cache/.fr-iO3D2W/3000_images/combined_1.jpg",
+										"/home/hsm/Desktop/qrcode/background.jpg"
+									]
+								}
+							]
+						},
+						"url": "{{url}}/article"
+					},
+					"response": [
+						{
+							"name": "store",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "ddddd",
+											"type": "text"
+										},
+										{
+											"key": "primary_image",
+											"type": "file",
+											"src": "/home/hsm/.cache/.fr-CKPaQZ/3000_images/combined_9.jpg"
+										},
+										{
+											"key": "attachments[]",
+											"type": "file",
+											"src": [
+												"/home/hsm/.cache/.fr-wPj6zv/3000_images/combined_6.jpg",
+												"/home/hsm/.cache/.fr-iO3D2W/3000_images/combined_1.jpg",
+												"/home/hsm/Desktop/qrcode/background.jpg"
+											]
+										}
+									]
+								},
+								"url": "{{url}}/article"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 05:55:41 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": null,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "ddddd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/article/2?_method=patch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"article",
+								"2"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "patch"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "ddddd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/article/2?_method=patch",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"article",
+										"2"
+									],
+									"query": [
+										{
+											"key": "_method",
+											"value": "patch"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 06:52:50 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": null,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "{{url}}/article/2"
+					},
+					"response": [
+						{
+							"name": "show",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "search",
+											"value": "cupiditate consequuntur",
+											"description": "if send search parameter find on all title and description ",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{url}}/article/2"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 06:19:38 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 2,\n        \"title\": \"مهندس\",\n        \"description\": \"Quibusdam veniam quis porro ipsum expedita. Voluptas quibusdam aut a et. In ex asperiores nesciunt eaque dolor. Provident nihil rerum quod earum autem dolorem officia enim.\",\n        \"primaryImage\": \"http://localhost:8004/storage/2/test5.png\",\n        \"attachments\": []\n    },\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"message\": \"\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "paginate and search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"search\":\"\",\n    \"article_id\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/comment"
+					},
+					"response": [
+						{
+							"name": "index",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"search\":\"\",\n    \"article_id\":\"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/comment"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 07:35:23 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": [\n        {\n            \"id\": 1,\n            \"article_id\": 9,\n            \"comment\": \"Deleniti odio corporis magni exercitationem quia possimus sed quidem. Explicabo eaque pariatur soluta sint error aliquam.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 2,\n            \"article_id\": 1,\n            \"comment\": \"Officiis culpa vitae et. Corrupti commodi amet deserunt natus eveniet praesentium. Cum natus libero commodi quo a omnis.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 3,\n            \"article_id\": 2,\n            \"comment\": \"Et dolor at eum eveniet vel. Est et dolorum impedit blanditiis a nam.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 4,\n            \"article_id\": 9,\n            \"comment\": \"Sit delectus fugiat est nobis id. Autem dolore totam officiis eum. Nemo corporis mollitia tenetur animi enim.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 5,\n            \"article_id\": 1,\n            \"comment\": \"Ipsum quasi doloremque dolor qui illum soluta ratione. Quis illo natus aut blanditiis veniam aut. Dolorem et iure quae omnis. Quis ut odio quia voluptatem assumenda.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 6,\n            \"article_id\": 10,\n            \"comment\": \"Sed sint rerum dignissimos animi. Suscipit voluptatem et et quia voluptatem ab quas. Modi iste consequatur deserunt. Eius quisquam totam magnam deleniti temporibus et nemo ut.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 7,\n            \"article_id\": 4,\n            \"comment\": \"Sit itaque atque iste nesciunt ratione laboriosam voluptatum nisi. Rerum similique eos odit possimus sed. At impedit eos sequi odio.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 8,\n            \"article_id\": 1,\n            \"comment\": \"Non sint non id. Eos officia beatae ullam et non quo. Voluptas sint qui ullam delectus qui.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 9,\n            \"article_id\": 4,\n            \"comment\": \"Sint exercitationem modi vero ea magni. Ipsum sint ab corrupti voluptatem aliquam cum. Consectetur aliquid quasi soluta quasi autem animi.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        },\n        {\n            \"id\": 10,\n            \"article_id\": 10,\n            \"comment\": \"Neque vel voluptas blanditiis placeat et omnis. A nulla aperiam quos sequi explicabo consequuntur. Consectetur accusantium cupiditate ex sit cupiditate doloribus voluptate ex.\",\n            \"totalLikes\": 0,\n            \"totalDislikes\": 0\n        }\n    ],\n    \"currentPage\": 1,\n    \"totalPage\": 1,\n    \"perPage\": 10,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"article_id\":\"1\",\n    \"user_id\":\"1\",\n    \"comment\":\"salam\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/comment"
+					},
+					"response": [
+						{
+							"name": "store",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"article_id\":\"1\",\n    \"user_id\":\"1\",\n    \"comment\":\"salam\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/comment"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 07:41:10 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": null,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\":\"salam222\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/comment/10?_method=patch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"10"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "patch"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"comment\":\"salam222\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/comment/10?_method=patch",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"comment",
+										"10"
+									],
+									"query": [
+										{
+											"key": "_method",
+											"value": "patch"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 07:45:43 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": null,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/comment/1"
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									}
+								],
+								"url": "{{url}}/comment/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 07:42:16 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"result\": null,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "{{url}}/comment/2"
+					},
+					"response": [
+						{
+							"name": "show",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{url}}/comment/2"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Nov 2024 07:48:40 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 2,\n        \"article_id\": 10,\n        \"comment\": \"Iste modi non eius placeat. Quia enim quibusdam voluptatem omnis nemo eius tempore. Accusamus velit exercitationem explicabo aperiam unde dolorum at et. Sunt et minima suscipit sint laborum quas.\",\n        \"totalLikes\": 0,\n        \"totalDislikes\": 0\n    },\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"message\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "like or dislike",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\":\"like\" // like  or dislike\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/comment/2/like/or/dislike"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"superadmin@test.com\",\n    \"password\":\"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/login"
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"superadmin@test.com\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/login"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.25"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Nov 2024 06:54:47 GMT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"id\": 1,\n        \"name\": \"کیان راوندی\",\n        \"email\": \"superadmin@test.com\",\n        \"accessToken\": \"Bearer 2|SaGCOrFk4C0vQUEUKmXzzqmuI6sDRGeTmuwdxK8g0988b91d\"\n    },\n    \"isSuccess\": true,\n    \"code\": 200,\n    \"message\": \"\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8004/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "bearer",
+			"value": "Bearer 1|Fagi5ZwuWr6k7QVWAglgVGhXonyKQKBtbCADhIir5a8e40d4",
+			"type": "string"
+		}
+	]
+}

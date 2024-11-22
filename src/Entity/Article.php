@@ -3,6 +3,7 @@
 namespace AngusDV\ParsNews\Entity;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -15,6 +16,11 @@ class Article extends Model implements HasMedia
         "title",
         "description",
     ];
+
+    public function creator(): BelongsTo
+    {
+        return  $this->belongsTo(ApiUser::class,'user_id');
+    }
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);

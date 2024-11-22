@@ -5,6 +5,8 @@ namespace AngusDV\ParsNews;
 use AngusDV\ParsNews\Commands\DockerInstallCommand;
 use AngusDV\ParsNews\Commands\RobotCommand;
 use AngusDV\ParsNews\Entity\ApiUser;
+use AngusDV\ParsNews\Entity\Article;
+use AngusDV\ParsNews\Observers\ArticleObserver;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,9 +24,7 @@ class ParsNewsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ParsNews');
         $this->loadRoutesFrom(__DIR__ . '/pars-news-routes.php');
         $this->loadSeeders();
-
-
-
+        Article::observe(ArticleObserver::class);
     }
     /**
      * Register the application services.
