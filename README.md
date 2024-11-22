@@ -55,5 +55,5 @@ sudo supervisorctl start all
 
 ## TEST
 ```angular2html
-sudo docker exec -it pars_php  php  artisan test /vendor/angus-dv/pars-news/Test/
+sudo docker exec -it pars_php  php  artisan test vendor/angus-dv/pars-news/src/Test/Feature
 ```
