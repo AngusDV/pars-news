@@ -42,6 +42,7 @@ class DockerInstallCommand extends Command
     protected function copyFilesIfNotExists()
     {
         $filesToCopy = [
+            __DIR__ . '/../../resources/docker/.env' => base_path('.env'),
             __DIR__ . '/../../resources/docker/docker-compose.yml' => base_path('docker-compose.yml'),
             __DIR__ . '/../../resources/docker/Dockerfile' => base_path('Dockerfile'),
             __DIR__ . '/../../resources/docker/nginx' => base_path('docker/nginx'),
