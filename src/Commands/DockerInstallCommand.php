@@ -39,7 +39,6 @@ class DockerInstallCommand extends Command
     {
         $this->copyFilesIfNotExists();
     }
-
     protected function copyFilesIfNotExists()
     {
         $filesToCopy = [
@@ -52,18 +51,19 @@ class DockerInstallCommand extends Command
         ];
 
         foreach ($filesToCopy as $source => $destination) {
-
-            // Determine if the source is a directory or file
-            if (is_dir($source)) {
-                // Create the destination directory
-                mkdir($destination, 0755, true);
-                // Copy contents of the directory
-                $this->copyDirectory($source, $destination);
-            } else {
-                // Copy the file
-                copy($source, $destination);
+            // Check if the destination file or directory already exists
+            if (!file_exists($destination)) {
+                // Determine if the source is a directory or file
+                if (is_dir($source)) {
+                    // Create the destination directory
+                    mkdir($destination, 0755, true);
+                    // Copy contents of the directory
+                    $this->copyDirectory($source, $destination);
+                } else {
+                    // Copy the file
+                    copy($source, $destination);
+                }
             }
-
         }
     }
 
@@ -86,7 +86,10 @@ class DockerInstallCommand extends Command
                 // Recursively copy the directory
                 $this->copyDirectory($sourcePath, $destinationPath);
             } else {
-                copy($sourcePath, $destinationPath);
+                // Copy the file
+                if (!file_exists($destinationPath)) {
+                    copy($sourcePath, $destinationPath);
+                }
             }
         }
     }
